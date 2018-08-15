@@ -1,4 +1,4 @@
-package Java8;
+package Java8.Exercise;
 
 import java.io.InputStream;
 import java.util.Optional;

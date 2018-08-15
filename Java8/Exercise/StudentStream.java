@@ -55,5 +55,12 @@ public class StudentStream {
         oo("Is all studens male : ",allMale);
         boolean anyFemale = students.stream().anyMatch(Student::isFemale);
         oo("Is any students female : ",anyFemale);
+        LongSummaryStatistics creditStats = students.stream().map(Student::getCredit)//LongSummaryStatistics是一个包含了得到平均值、最大值、最小值等的组合运算类
+                .collect(LongSummaryStatistics::new,
+                        LongSummaryStatistics::accept,
+                        LongSummaryStatistics::combine);
+        oo("Credit Stats : ",creditStats);
+        LongSummaryStatistics creditStats2 = students.stream().collect(Collectors.summarizingLong(Student::getCredit));//collect 与Collects联系
+        oo("Credit Stats: ",creditStats2);
     }
 }

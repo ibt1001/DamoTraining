@@ -1,4 +1,4 @@
-package com.mingrisoft;
+package Java8.Exercise;
 import java.util.*;
 public class MytTimerTask extends TimerTask{
 	private String name;
