@@ -8,10 +8,10 @@ import java.util.stream.Stream;
 
 public class StudentStream {
     private static List<Student> register(){
-        Student s1 = new Student(1L,"zhanghanwen",Student.Gender.MALE,100, LocalDate.of(2018, Month.SEPTEMBER,1),Student.Department.AM);
+        Student s1 = new Student(1L,"zhanghanwen",Student.Gender.FEMALE,100, LocalDate.of(2018, Month.SEPTEMBER,1),Student.Department.AM);
         Student s2 = new Student(2L,"fanghanwen",Student.Gender.FEMALE,80, LocalDate.of(2018, Month.SEPTEMBER,1),Student.Department.CL);
         Student s3 = new Student(3L,"gonghanwen",Student.Gender.FEMALE,10, LocalDate.of(2018, Month.SEPTEMBER,1),Student.Department.CN);
-        Student s4 = new Student(4L,"liuhanwen",Student.Gender.MALE,90, LocalDate.of(2018, Month.SEPTEMBER,1),Student.Department.EE);
+        Student s4 = new Student(4L,"liuhanwen",Student.Gender.FEMALE,90, LocalDate.of(2018, Month.SEPTEMBER,1),Student.Department.EE);
         return Arrays.asList(s1,s2,s3,s4);
     }
     private static void o(Object o){
@@ -51,7 +51,7 @@ public class StudentStream {
                     return middlesum;
                 },(a,b)->{return null;});//因为Integer Student类不兼容，故得采取BinaryOperator来解决
         oo("The sum credits is : ",sumCredits);
-        boolean allMale = students.stream().allMatch(Student::isMale);
+        boolean allMale = students.stream().allMatch(Student::isFemale);
         oo("Is all studens male : ",allMale);
         boolean anyFemale = students.stream().anyMatch(Student::isFemale);
         oo("Is any students female : ",anyFemale);
@@ -62,5 +62,37 @@ public class StudentStream {
         oo("Credit Stats : ",creditStats);
         LongSummaryStatistics creditStats2 = students.stream().collect(Collectors.summarizingLong(Student::getCredit));//collect 与Collects联系
         oo("Credit Stats: ",creditStats2);
+        Double creditAvg = students.stream().collect(Collectors.averagingDouble(Student::getCredit));
+        oo("Credit Average: ",creditAvg);
+        Map<Long,String> idNameMap = students.stream().collect(Collectors.toMap(Student::getId,Student::getName));
+        oo("<Id,Name>: ",idNameMap);
+        Map<Student.Department,String> departmentNameMap = students.stream().collect(Collectors.toMap(Student::getDepartment,Student::getName));
+        oo("<department,Name>: ",departmentNameMap);
+
+        String names = students.stream().map(Student::getName).collect(Collectors.joining(",","XUPT-NetWork[","]"));
+        o(names);
+        Optional<Student> hasFemale = students.stream().filter(Student::isFemale).findAny();
+        if(hasFemale.isPresent()){
+            oo("Yes, we have female students: ",hasFemale.get().getName());
+        }else{
+            o("Sorry, we have no female students");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

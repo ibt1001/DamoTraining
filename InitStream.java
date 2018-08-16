@@ -25,7 +25,8 @@ public class InitStream {
         Stream<String> stream = initByBuilder();
         stream.forEach(System.out::println);
         Stream<String> stream1 = initByCollection();
-        stream1.forEach(System.out::print);
+        stream1.forEach(System.out::println);
+        System.out.println("Stream.empty： ");
         Stream<String> stream2 = Stream.empty();
         stream2.forEach(System.out::println);
         IntStream stream3 = IntStream.rangeClosed(1,6);
