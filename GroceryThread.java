@@ -52,8 +52,9 @@ class DemoThread implements Runnable{
 public class GroceryThread {
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(2);
+        DemoThread dt = new DemoThread();
         for(int i = 0;i<5;i++){
-            executor.execute(new DemoThread());
+            executor.execute(dt);
         }
         Thread.sleep(5000);
         executor.shutdown();

@@ -2,6 +2,7 @@
 .idea/
 out/
 *.iml
+*.xml
 
 ### Java-Web ###
 target/
@@ -9,6 +10,7 @@ target/
 ### Java ###
 # Compiled class file
 *.class
+*.xml
 
 # Package Files #
 *.jar
